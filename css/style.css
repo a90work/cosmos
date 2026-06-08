@@ -1,3 +1,38 @@
+/* ==========================================================
+   KOSMOS 3.0 - ADVANCED GRAPHICS INTEGRATION
+========================================================== */
+
+#universe-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* ارسال فضا به پشت لایه‌های متنی وب‌سایت */
+    background: #020408; /* رنگ تاریکی مطلق کیهان */
+    overflow: hidden;
+    pointer-events: none; /* تداخل نداشتن با کلیک دکمه‌های سایت */
+}
+
+/* شفاف کردن بک‌گراند سکشن‌ها برای عبور نور ستاره‌ها از پشت متن‌ها */
+section {
+    background: transparent !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* افکت شیشه‌ای مات نئونی (Glassmorphism) برای کارت‌های روی پس‌زمینه سه بعدی */
+.card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(0, 214, 255, 0.08) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
 :root {
 
     /* COLORS */
