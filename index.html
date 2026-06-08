@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>KOSMOS | سفر به اعماق کیهان</title>
+
+    <meta name="description"
+        content="کاوش در اعماق جهان، کهکشان‌ها، سیاهچاله‌ها، ستارگان و شگفتی‌های کیهان">
+
+    <meta name="keywords"
+        content="نجوم, کیهان, فضا, ستاره, سیاهچاله, کهکشان, kosmos">
+
+    <meta name="author"
+        content="KOSMOS">
+
+    <meta name="robots"
+        content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="KOSMOS">
+
+    <meta property="og:description"
+        content="فراتر از ستارگان">
+
+    <meta property="og:type"
+        content="website">
+
+    <meta property="og:image"
+        content="assets/images/cover.jpg">
+
+    <!-- PWA -->
+    <link rel="manifest"
+        href="manifest.json">
+
+    <meta name="theme-color"
+        content="#020408">
+
+    <!-- Fonts -->
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+        href="css/style.css">
+
+    <link rel="stylesheet"
+        href="css/animations.css">
+
+    <link rel="stylesheet"
+        href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- LOADER -->
+
+    <div id="loader">
+
+        <div class="loader-logo">
+
+            KOSMOS
+
+        </div>
+
+        <div class="loader-text">
+
+            Loading Universe...
+
+        </div>
+
+    </div>
+
+    <!-- CURSOR -->
+
+    <div id="cursor"></div>
+
+    <div id="cursor-ring"></div>
+
+    <!-- PROGRESS BAR -->
+
+    <div id="scroll-progress"></div>
+
+    <!-- BACKGROUND -->
+
+    <canvas id="star-canvas"></canvas>
+
+    <!-- NAVBAR -->
+
+    <nav id="navbar">
+
+        <div class="logo">
+
+            K<span>O</span>SMOS
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="#hero">خانه</a></li>
+
+            <li><a href="#about">درباره</a></li>
+
+            <li><a href="#features">ویژگی‌ها</a></li>
+
+            <li><a href="#timeline">تاریخچه</a></li>
+
+            <li><a href="#planets">سیارات</a></li>
+
+            <li><a href="#cta">عضویت</a></li>
+
+        </ul>
+
+        <button id="theme-toggle"
+            aria-label="تغییر تم">
+
+            🌙
+
+        </button>
+
+    </nav>
+
+    <!-- HERO -->
+
+    <section id="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+
+                ✦ کاوشگر کیهان
+
+            </span>
+
+            <h1>
+
+                فراتر از
+
+                <span>
+
+                    ستارگان
+
+                </span>
+
+            </h1>
+
+            <p>
+
+                سفری به اعماق جهان،
+                کهکشان‌ها،
+                ستاره‌ها و رازهای ناشناخته کیهان
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#about"
+                    class="btn-primary">
+
+                    شروع کاوش
+
+                </a>
+
+                <a href="#planets"
+                    class="btn-secondary">
+
+                    مشاهده سیارات
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <span>
+
+                    ✦ درباره
+
+                </span>
+
+                <h2>
+
+                    جهانی که هنوز
+                    نمی‌شناسیم
+
+                </h2>
+
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about-text">
+
+                    <p>
+
+                        کیهان سرشار از اسرار،
+                        سیاهچاله‌ها،
+                        کهکشان‌ها و ستارگان ناشناخته است.
+
+                    </p>
+
+                </div>
+
+                <div class="galaxy-wrapper">
+
+                    <canvas id="galaxy-canvas"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <section id="features">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <span>✦ ویژگی‌ها</span>
+
+                <h2>چه چیزی می‌آموزیم؟</h2>
+
+            </div>
+
+            <div id="features-grid">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TIMELINE -->
+
+    <section id="timeline">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <span>✦ تاریخچه</span>
+
+                <h2>سفر بشر به فضا</h2>
+
+            </div>
+
+            <div id="timeline-container">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PLANETS -->
+
+    <section id="planets">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <span>✦ اجرام کیهانی</span>
+
+                <h2>سیارات منظومه شمسی</h2>
+
+            </div>
+
+            <div id="planet-grid">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- NEWSLETTER -->
+
+    <section id="cta">
+
+        <div class="container">
+
+            <div class="cta-content">
+
+                <h2>
+
+                    به سفر کیهانی بپیوند
+
+                </h2>
+
+                <p>
+
+                    آخرین اخبار و تصاویر نجومی را دریافت کن
+
+                </p>
+
+                <form id="newsletter-form">
+
+                    <label for="email"
+                        class="sr-only">
+
+                        ایمیل
+
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="ایمیل خود را وارد کنید"
+                        required>
+
+                    <button type="submit">
+
+                        عضویت
+
+                    </button>
+
+                </form>
+
+                <div id="newsletter-message">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                © 2026 KOSMOS 
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#">Instagram</a>
+
+                <a href="#">X</a>
+
+                <a href="#">YouTube</a>
+
+                <a href="#">Contact</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- JS MODULES -->
+
+    <script type="module"
+        src="js/main.js"></script>
+
+</body>
+
+</html>
