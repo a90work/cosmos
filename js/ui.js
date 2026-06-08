@@ -103,139 +103,53 @@ export function initCursor() {
     addCursorHoverEffects();
 }
 
-function addCursorHoverEffects() {
-    const targets = document.querySelectorAll('a, button, .card, input, textarea');
+/* ==========================================\
+   MODIFIED CURSOR & HOVER EFFECTS
+========================================== */
+export function addCursorHoverEffects() {
+    // انتخاب تمام دکمه‌ها، لینک‌ها و اینپوت‌ها شامل دکمه‌هایی که داینامیک اضافه شده‌اند
+    const hoverTargets = document.querySelectorAll('a, button, input, [role="button"], #back-to-top');
     const ring = document.getElementById('cursor-ring');
-
+    
     if (!ring) return;
 
-    targets.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            ring.classList.add('cursor-hover');
-        });
+    hoverTargets.forEach(target => {
+        // حذف رویدادهای قبلی برای جلوگیری از تکرار مجدد روی المان‌های ثابت
+        target.removeEventListener('mouseenter', handleMouseEnter);
+        target.removeEventListener('mouseleave', handleMouseLeave);
 
-        el.addEventListener('mouseleave', () => {
-            ring.classList.remove('cursor-hover');
-        });
+        target.addEventListener('mouseenter', handleMouseEnter);
+        target.addEventListener('mouseleave', handleMouseLeave);
     });
 }
 
-/* ==========================================
-   SMOOTH LOADER REMOVAL
+function handleMouseEnter() {
+    const ring = document.getElementById('cursor-ring');
+    if (ring) ring.classList.add('cursor-hover');
+}
+
+function handleMouseLeave() {
+    const ring = document.getElementById('cursor-ring');
+    if (ring) ring.classList.remove('cursor-hover');
+}
+
+/* ==========================================\
+   FIXED LOADER REMOVAL (WITH TRANSITION HARMONY)
 ========================================== */
 export function removeLoader() {
     const loader = document.getElementById('loader');
     if (!loader) return;
 
+    // اضافه کردن کلاس انیمیشن خروج از CSS
     loader.classList.add('loader-hide');
+    
+    // حذف فیزیکی از DOM دقیقاً پس از اتمام زمان ترنزیشن CSS (0.8 ثانیه)
     setTimeout(() => {
         loader.remove();
-    }, 900);
+    }, 800);
 }
 
-/* ==========================================
-   SMOOTH SCROLL TO ELEMENT
-========================================== */
-export function scrollToElement(selector) {
-    const element = document.querySelector(selector);
-    if (!element) return;
-
-    element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-}
-
-/* ==========================================
-   BACK TO TOP BUTTON CREATION
-========================================== */
-export function createBackToTop() {
-    const button = document.createElement('button');
-    button.id = 'back-to-top';
-    button.innerHTML = '↑';
-    button.setAttribute('aria-label', 'بازگشت به بالا');
-    document.body.appendChild(button);
-
-    button.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    const update = () => {
-        if (window.scrollY > 600) {
-            button.classList.add('visible');
-        } else {
-            button.classList.remove('visible');
-        }
-    };
-
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-}
-
-/* ==========================================
-   DYNAMIC ACTIVE NAV LINK OBSERVER
-========================================== */
-export function initActiveLinks() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    if (sections.length === 0 || navLinks.length === 0) return;
-
-    const observer = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-
-                const id = entry.target.id;
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + id) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-        },
-        { threshold: 0.4 }
-    );
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-}
-
-/* ==========================================
-   KEYBOARD UX & ACCESSIBILITY
-========================================== */
-export function initKeyboardUX() {
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-            document.activeElement?.blur();
-        }
-    });
-}
-
-/* ==========================================
-   OS REDUCED MOTION ACCESSIBILITY
-========================================== */
-export function disableHeavyEffects() {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    
-    const applyMotionSettings = () => {
-        if (reduce.matches) {
-            document.body.classList.add('reduced-motion');
-        } else {
-            document.body.classList.remove('reduced-motion');
-        }
-    };
-
-    applyMotionSettings();
-    reduce.addEventListener('change', applyMotionSettings);
-}
-
-/* ==========================================
+/* ==========================================\
    BOOTSTRAP ALL UI FUNCTIONS
 ========================================== */
 export function initUI() {
@@ -243,11 +157,13 @@ export function initUI() {
     initNavbar();
     initProgressBar();
     initCursor();
-    createBackToTop();
+    createBackToTop(); // ابتدا دکمه ساخته می‌شود
     initActiveLinks();
     initKeyboardUX();
     disableHeavyEffects();
     
-    // اجرای خودکار حذف لودر پس از لود کامل تمام عناصر فرانت‌اند
-    removeLoader();
+    // اعمال افکت کرسر پس از ساخته شدن تمام المان‌ها (حتی المان‌های داینامیک)
+    addCursorHoverEffects();
+    
+    // تابع حذف خودکار لودر از اینجا پاک شد تا توسط تابع اصلی (main.js) پس از لود Three.js مدیریت شود.
 }

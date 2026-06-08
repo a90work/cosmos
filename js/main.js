@@ -49,6 +49,9 @@ function initAudioSystem() {
 /**
  * تابع اصلی راه‌اندازی کل پروژه (App Initialization)
  */
+/**
+ * تابع اصلی راه‌اندازی کل پروژه (App Initialization)
+ */
 async function bootstrapApp() {
     console.log('%c KOSMOS 3.0 Initializing... ', 'background: #020408; color: #00d4ff; font-weight: bold;');
 
@@ -56,21 +59,27 @@ async function bootstrapApp() {
         // ۱. راه‌اندازی هسته گرافیکی Three.js
         initKosmosEngine();
 
-        // ۲. راه‌اندازی رابط کاربری (Cursor, Navbar, Theme, etc.)
+        // ۲. راه‌اندازی رابط کاربری
         initUI();
 
-        // ۳. فعال‌سازی سیستم خبرنامه
+        // ۳. فعال‌سازی سیستم خبرنامه و صوت
         initNewsletter();
-
-        // ۴. فعال‌سازی سیستم صوتی
         initAudioSystem();
 
-        // ۵. ثبت سرویس ورکر برای حالت آفلاین
+        // ۴. ثبت سرویس ورکر
         await registerServiceWorker();
 
-        console.log('%c KOSMOS is Ready. Enjoy the Universe! ', 'color: #00ff88;');
+        // ۵. حذف لودر صفحه دقیقاً پس از اینکه مطمئن شدیم تمام کامپوننت‌ها رندر شده‌اند
+        // به این ترتیب کاربر پرش تصویری یا صفحه سفید نخواهد دید.
+        import('./ui.js').then(uiModule => {
+            uiModule.removeLoader();
+        });
+
+        console.log('%c KOSMOS 3.0 Ready! ', 'background: #00d4ff; color: #020408; font-weight: bold;');
     } catch (error) {
-        console.error('Critical error during KOSMOS bootstrap:', error);
+        console.error('Critical error during bootstrap:', error);
+        // در صورت بروز خطای شدید، لودر حذف می‌شود تا سایت کاملاً قفل نشود
+        import('./ui.js').then(uiModule => uiModule.removeLoader());
     }
 }
 

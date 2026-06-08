@@ -1,21 +1,18 @@
-/* ==========================================================
-   KOSMOS 3.0 - RESPONSIVE DESIGN
-========================================================== */
-
-@media (max-width: 1024px) {
-    nav { padding: 20px 30px; }
-    #hero h1 { font-size: 4rem; }
-}
-
 @media (max-width: 768px) {
-    /* مخفی کردن ماوس سفارشی در صفحات لمسی */
-    #cursor, #cursor-ring { display: none !important; }
-    * { cursor: auto !important; }
-
+    /* مخفی کردن المان‌های ماوس سفارشی در صفحات لمسی */
+    #cursor, #cursor-ring { 
+        display: none !important; 
+    }
+    
+    /* بازگرداندن حالت پیش‌فرض نشانگر به تمام المان‌ها و لغو اثر دستور استایل اصلی */
+    html, body, * { 
+        cursor: auto !important; 
+    }
+    
     #hero h1 { font-size: 2.5rem; }
     
     .nav-links {
-        display: none; /* برای ساده‌سازی؛ می‌توانید همبرگر منو اضافه کنید */
+        display: none; 
     }
 
     #cosmic-panel {
