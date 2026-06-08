@@ -1,26 +1,27 @@
 {
-  "name": "KOSMOS",
+  "name": "KOSMOS | سفر به اعماق کیهان",
   "short_name": "KOSMOS",
-  "description": "Explore the Universe Beyond the Stars",
-  "start_url": "/",
+  "description": "کاوش در اعماق جهان، کهکشان‌ها، سیاهچاله‌ها و شگفتی‌های کیهان",
+  "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#020408",
   "theme_color": "#00d4ff",
   "lang": "fa",
   "dir": "rtl",
-  "scope": "/",
-
+  "scope": "./",
   "icons": [
     {
       "src": "assets/icons/icon-72.png",
       "sizes": "72x72",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "assets/icons/icon-96.png",
       "sizes": "96x96",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "assets/icons/icon-128.png",
@@ -40,7 +41,8 @@
     {
       "src": "assets/icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "assets/icons/icon-384.png",
@@ -50,7 +52,8 @@
     {
       "src": "assets/icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
