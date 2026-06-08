@@ -14,6 +14,7 @@ import { initNewsletter } from './newsletter.js';
 async function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         try {
+            // استفاده از './sw.js' به جای '/sw.js' برای هماهنگی با گیت‌هاب
             const registration = await navigator.serviceWorker.register('./sw.js');
             console.log('[PWA] ServiceWorker registered with scope:', registration.scope);
         } catch (error) {
