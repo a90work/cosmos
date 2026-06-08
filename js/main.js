@@ -3,12 +3,7 @@
 ========================================================== */
 
 import { initKosmosEngine } from './kosmos-engine.js';
-import {
-    initTheme,
-    initProgressBar,
-    initNavbar,
-    initCursor
-} from './ui.js';
+import { initUI } from './ui.js';
 import { initNewsletter } from './newsletter.js';
 
 const App = {
@@ -30,11 +25,10 @@ async function bootstrap() {
         // اجرای موتور ۳بعدی فضا
         initKosmosEngine();
 
-        // اجرای سیستم‌های رابط کاربری و فرانت‌اند
-        initTheme();
-        initNavbar();
-        initProgressBar();
-        initCursor();
+        // اجرای سیستم یکپارچه رابط کاربری و فرانت‌اند
+        initUI();
+        
+        // اجرای ماژول خبرنامه
         initNewsletter();
 
         // فعال‌سازی قابلیت PWA و آفلاین
